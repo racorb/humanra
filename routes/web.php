@@ -13,6 +13,7 @@ use App\Http\Controllers\Portal\HumanResourceController;
 // admin
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminBankController;
 
 
 
@@ -56,5 +57,11 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('/logout', [AdminAuthController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+        // bank
+        Route::resource('/bank', AdminBankController::class);
+        Route::get('/bank/detail/{id}', [AdminBankController::class, 'detail'])->name('bank.detail');
+        Route::get('/bank/status/{id}', [AdminBankController::class, 'status'])->name('bank.status');
+        Route::get('/bank/delete/{id}', [AdminBankController::class, 'delete'])->name('bank.delete');
     });
 });

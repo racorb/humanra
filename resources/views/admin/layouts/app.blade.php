@@ -47,11 +47,22 @@
           @include('admin.layouts.navbar')
           <!-- Content wrapper -->
           <div class="content-wrapper">
-            
-            <!-- Content -->
-            @yield('content')
-            <!-- / Content -->
-
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="row">
+                <div class="col-12">
+                  <h4 class="fw-bold py-3 mb-4">
+                    @if(!Request::is('admin/dashboard'))
+                      <a href="{{route('admin.dashboard')}}"><span class="text-muted fw-light">Dashboard /</span></a>
+                    @endif
+                    @yield('breadcrumb')
+                    @yield('title')
+                  </h4>
+                </div>
+                <!-- Content -->
+                @yield('content')
+                <!-- / Content -->
+              </div>
+            </div>
             <!-- Footer -->
             @include('admin.layouts.footer')
             <!-- / Footer -->
@@ -89,5 +100,6 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    @yield('js')
   </body>
 </html>

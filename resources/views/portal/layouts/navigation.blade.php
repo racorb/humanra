@@ -9,6 +9,10 @@
             <li class="dropdown {{ Request::is('portal/dashboard') ? 'active' : '' }}">
                 <a href="{{route('portal.dashboard')}}" class="nav-link"><i data-feather="monitor"></i><span class="text-capitalize">İdarəetmə Paneli</span></a>
             </li>
+            <li class="menu-header">İnsan Resursları</li>
+            <li class="dropdown {{ Request::is('portal/human-resource') ? 'active' : '' }}">
+                <a href="{{route('portal.human.resource.index')}}" class="nav-link"><i data-feather="users"></i><span class="text-capitalize">Ümumi Məlumat</span></a>
+            </li>
             <li class="dropdown {{ Request::is('portal/human-resource') ? 'active' : '' }}">
               <a href="#" class="menu-toggle nav-link has-dropdown text-capitalize"><i
                   data-feather="users"></i><span>İnsan Resursları</span></a>
