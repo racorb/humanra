@@ -6,6 +6,7 @@
         
         <!-- General CSS Files -->
         <link rel="stylesheet" href="{{asset('/')}}portal-html/assets/css/app.min.css">
+        <link rel="stylesheet" href="{{asset('/')}}portal-html/assets/bundles/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="{{asset('/')}}portal-html/assets/bundles/bootstrap-social/bootstrap-social.css">
         <!-- Template CSS -->
         <link rel="stylesheet" href="{{asset('/')}}portal-html/assets/css/style.css">

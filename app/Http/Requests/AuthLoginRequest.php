@@ -22,7 +22,7 @@ class AuthLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
+            'username' => 'required|min:3|max:255',
             'password' => 'required|min:6|max:15',
         ];
     }
@@ -36,8 +36,9 @@ class AuthLoginRequest extends FormRequest
     {
         return [
             // email
-            'email.required' => 'Elektron poçt ünvanınızı daxil edin',
-            'email.email' => 'Elektron poçt ünvanı düzgün daxil edilməyib',
+            'username.required' => 'İstifadəçi adınızı daxil edin',
+            'username.min' => 'İstifadəçi adını minimum 3 karakter olmalıdır',
+            'username.max' => 'İstifadəçi adını maksimum 255 karakter olmalıdır',
 
             // password
             'password.required' => 'Şifrənizi daxil edin',

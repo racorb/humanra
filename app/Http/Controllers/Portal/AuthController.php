@@ -21,7 +21,7 @@ class AuthController extends Controller
     }
     public function postIndex(AuthLoginRequest $request) {
         // login code
-        if(Auth::guard('web')->attempt($request->only('email', 'password'))){
+        if(Auth::guard('web')->attempt($request->only('username', 'password'))){
 
             $user=User::find(Auth::guard('web')->user()->id);
             $user->status=1;
@@ -42,8 +42,7 @@ class AuthController extends Controller
     public function postRegister(AuthRegisterRequest $request) {
         // register code
         $user=new User();
-        $user->name=$request->name;
-        $user->email=$request->email;
+        $user->username=$request->username;
         $user->password=Hash::make($request->password);
         $data=$user->save();
 

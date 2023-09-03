@@ -46,10 +46,10 @@
               <form class="mb-3" action="{{route('admin.index.post')}}" method="POST" autocomplete="off">
                 @csrf
                 <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus value="{{ old('email') }}" />
-                  @if ($errors->has('email'))
-                    <p class="text-danger">{{ $errors->first('email') }}</p>
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus value="{{ old('username') }}" />
+                  @if ($errors->has('username'))
+                    <p class="text-danger">{{ $errors->first('username') }}</p>
                   @endif
                 </div>
                 <div class="mb-3 form-password-toggle">

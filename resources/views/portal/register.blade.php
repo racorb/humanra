@@ -45,17 +45,10 @@
                         <form method="POST" action="{{route('portal.register.post')}}" autocomplete="off">
                             @csrf
                             <div class="form-group">
-                                <label for="name">Tam Adınız <span class="text-danger">*</span> </label>
-                                <input id="name" type="text" class="form-control" name="name" autofocus value="{{ old('name') }}" placeholder="Tam adınızı daxil edin" >
-                                @if ($errors->has('name'))
-                                    <p class="text-danger">{{ $errors->first('name') }}</p>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="email">E-poçt ünvanı <span class="text-danger">*</span> </label>
-                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email ünvanınızı daxil edin" >
-                                @if ($errors->has('email'))
-                                    <p class="text-danger">{{ $errors->first('email') }}</p>
+                                <label for="username">İstifadəçi adınız <span class="text-danger">*</span> </label>
+                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="İstifadəçi adınızı daxil edin" >
+                                @if ($errors->has('username'))
+                                    <p class="text-danger">{{ $errors->first('username') }}</p>
                                 @endif
                             </div>
                             <div class="form-group">

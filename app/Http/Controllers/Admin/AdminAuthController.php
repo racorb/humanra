@@ -18,7 +18,7 @@ class AdminAuthController extends Controller
     }
     public function postIndex(AuthLoginRequest $request) {
         // login code
-        if(Auth::guard('admin')->attempt($request->only('email', 'password'))){
+        if(Auth::guard('admin')->attempt($request->only('username', 'password'))){
 
             $user=Admin::find(Auth::guard('admin')->user()->id);
             $user->status=1;

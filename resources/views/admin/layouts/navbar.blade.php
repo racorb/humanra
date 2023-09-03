@@ -23,7 +23,7 @@ id="layout-navbar"
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                 <div class="avatar avatar-{{ Auth::guard('admin')->user()->status == 1 ? 'online' : 'offline' }}">
-                    <img src="{{asset('/')}}admin-html/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    <img src="{{asset('/')}}admin-html/assets/img/users/1.png" alt class="w-px-40 h-auto rounded-circle" />
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
@@ -32,12 +32,12 @@ id="layout-navbar"
                         <div class="d-flex">
                             <div class="flex-shrink-0 me-3">
                                 <div class="avatar avatar-{{ Auth::guard('admin')->user()->status == 1 ? 'online' : 'offline' }}">
-                                    <img src="{{asset('/')}}admin-html/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                    <img src="{{asset('/')}}admin-html/assets/img/users/1.png" alt class="w-px-40 h-auto rounded-circle" />
                                 </div>
                             </div>
                             <div class="flex-grow-1">
-                                <span class="fw-semibold d-block text-capitalize">{{Auth::guard('admin')->user()->name}}</span>
-                                <small class="text-muted">Admin</small>
+                                <span class="fw-semibold d-block text-capitalize">{{Auth::guard('admin')->user()->getCompany->agent}}</span>
+                                <small class="text-muted">Adminstrator</small>
                             </div>
                         </div>
                     </a>

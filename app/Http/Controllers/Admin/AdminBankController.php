@@ -33,13 +33,6 @@ class AdminBankController extends Controller
      */
     public function store(BankRequest $request)
     {
-        $request->validate([
-            'companyname' => 'required',
-            'companyiban' => 'required',
-            'companyswift' => 'required',
-            'companyaccount' => 'required',
-        ]);
-
         // create code
         $bank=new Bank();
         $bank->name=$request->companyname;
@@ -79,13 +72,6 @@ class AdminBankController extends Controller
      */
     public function update(BankRequest $request, string $id)
     {
-        $request->validate([
-            'companyname' => 'required',
-            'companyiban' => 'required',
-            'companyswift' => 'required',
-            'companyaccount' => 'required',
-        ]);
-
         // update code
         $bank=Bank::find($id);
         $bank->name=$request->companyname;

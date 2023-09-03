@@ -6,12 +6,13 @@
 
         <!-- General CSS Files -->
         <link rel="stylesheet" href="{{asset('/')}}portal-html/assets/css/app.min.css">
+        <link rel="stylesheet" href="{{asset('/')}}portal-html/assets/bundles/fontawesome/css/all.min.css">
         <!-- Template CSS -->
         <link rel="stylesheet" href="{{asset('/')}}portal-html/assets/css/style.css">
         <link rel="stylesheet" href="{{asset('/')}}portal-html/assets/css/components.css">
         @yield('css')
         <!-- Custom style CSS -->
-        <link rel="stylesheet" href="{{asset('/')}}portal-html/assets/css/custom.css">        
+        <link rel="stylesheet" href="{{asset('/')}}portal-html/assets/css/custom.css">                
         
         <!-- Title & Shortcut Icon -->
         <title>Humanra | @yield("title")</title>
@@ -62,6 +63,7 @@
                     </div>
                     <div class="modal-body">
                         <div id="accordion">
+                            @php $banksPayment = \DB::table('banks')->where('status', 0)->get(); @endphp
                             @if($banksPayment->count() > 0)
                             <div class="accordion">
                                 <div class="accordion-header" role="button" data-toggle="collapse" data-target="#panel-body-1"

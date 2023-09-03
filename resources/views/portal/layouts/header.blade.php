@@ -127,24 +127,18 @@
             </div>
             </div>
         </li>
-        <li class="dropdown"><a href="#" data-toggle="dropdown"
-            class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{asset('/')}}portal-html/assets/img/user.png"
-                class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
+        <li class="dropdown">
+            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{asset('/')}}portal-html/assets/img/user.png" class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
-            <div class="dropdown-title text-center">{{Auth::guard('web')->user()->name}}</div>
-            <a href="profile.html" class="dropdown-item has-icon"> <i class="far fa-user"></i> Profile </a> 
-            <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-                Tənzimləmələr
-            </a>
-            <div class="dropdown-divider"></div>
-                <a href="{{route('portal.logout')}}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
-                    Çıxış
-                </a>
+                <div class="dropdown-title text-center">{{Auth::guard('web')->user()->username}}</div>
+                <a href="{{route('portal.profile')}}" class="dropdown-item has-icon"> <i class="far fa-user"></i> Profile </a> 
+                <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i> Tənzimləmələr</a>
+                <a href="{{route('portal.logout')}}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>Çıxış</a>
             </div>
         </li>
         <li>
             <button type="button" class="btn btn-primary ml-3" data-toggle="modal" data-target="#modalPayment">
-                Payment
+                Ödəniş
             </button>
         </li> 
     </ul>

@@ -18,8 +18,8 @@ class Admin extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'company_id',
+        'username',
         'password',
         'status',
     ];
@@ -40,7 +40,10 @@ class Admin extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getCompany(){
+        return $this->hasOne(Company::class, 'id', 'company_id'); 
+    }
 }
