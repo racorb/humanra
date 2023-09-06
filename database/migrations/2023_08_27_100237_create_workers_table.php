@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('position');
             $table->string('address');
-            $table->integer('status')->default(0); // 0 => disable; 1 => enable
+            $table->integer('status')->default(0)->comment('0 => disable; 1 => enable');
             $table->timestamps();
         });
     }

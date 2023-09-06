@@ -20,20 +20,44 @@ class PackageController extends Controller
         return view('admin.package-create');
     }
 
-    public function store(PackageRequest $request){      
+    public function store(Request $request){ 
 
-        // create code
-        $package=new Package();
-        $package->package_name=$request->package_name;
-        $data=$package->save();
+        $validated = $request->validate([
+            'package_name' => 'required|min:3|max:60',
+            'package_seflink' => 'required|min:3',
+        ], [
+            // name
+            'package_name.required' => 'Package should not be empty',
+            'package_name.min' => 'Your package name must be a minimum of 3 characters',
+            'package_name.max' => 'Your package name must be a maximum of 60 characters',
 
-        if($data){
-            toastr()->success('Package has been created successfully', 'Congratulations!');
-            return redirect()->route('admin.package.index');
+            // seflink
+            'package_seflink.required' => 'Seflink should not be empty',
+            'package_seflink.min' => 'Seflink must be a minimum of 3 characters',
+        ]);
+
+        $filter_package = Package::where('seflink', $request->package_seflink)->first();
+
+        if($filter_package){
+            toastr()->error('This is seflink is busy. Please try again', 'Ooops!');
+                return redirect()->back();
         } else {
-            toastr()->error('Something went wrong. Please try again', 'Ooops!');
-            return redirect()->back();
+            // create code
+            $package=new Package();
+            $package->package_name=$request->package_name;
+            $package->seflink=$request->package_seflink;
+            $data=$package->save();
+
+            if($data){
+                toastr()->success('Package has been created successfully', 'Congratulations!');
+                return redirect()->route('admin.package.index');
+            } else {
+                toastr()->error('Something went wrong. Please try again', 'Ooops!');
+                return redirect()->back();
+            }
         }
+
+        
     }
 
     public function status(string $id)
@@ -43,12 +67,6 @@ class PackageController extends Controller
         if($package){
             $query=BusinessPackage::where('package_id', $id)->get();
             if($package->status == 0){
-                if($query->count() > 0){
-                    for($i=0; $i < $query->count(); $i++){
-                        $query[$i]->status=0;
-                        $query[$i]->save();
-                    }
-                }
                 $package->status=1;
             } else {
                 for($i=0; $i < $query->count(); $i++){

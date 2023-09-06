@@ -17,25 +17,38 @@
                 @if($query)
                     @php $search_data = DB::table('business_areas')->where('id', $query->business_id )->where('status', 1)->first() @endphp
                 
-                    <!-- Human Resource start -->                     
-                    @if($search_data->id == 1)                        
-                    <li class="menu-header">İnsan Resursları</li>
-                    <li class="dropdown {{ Request::is('portal/human-resource') ? 'active' : '' }}">
-                        <a href="{{route('portal.human.resource.index')}}" class="nav-link"><i data-feather="users"></i><span class="text-capitalize">Ümumi Məlumat</span></a>
-                    </li>
-                    <li class="dropdown {{ Request::is('portal/human-resource') ? 'active' : '' }}">
-                        <a href="#" class="menu-toggle nav-link has-dropdown text-capitalize"><i
-                            data-feather="users"></i><span>İnsan Resursları</span></a>
-                        <ul class="dropdown-menu">
-                            <li class="{{ Request::is('portal/human-resource') ? 'active' : '' }}">
-                                <a class="nav-link {{ Request::is('portal/human-resource') ? 'toggled' : '' }}" href="{{route('portal.human.resource.index')}}">Ümumi Məlumat</a>
-                            </li>
-                            <li class="#">
-                                <a class="nav-link text-capitalize" href="#">İstifadəçi yarat</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- Human Resource end -->
+                    @if($search_data)
+                        @php $filter_packages = DB::table('business_packages')->where('business_id', $search_data->id )->where('status', 0)->get() @endphp
+
+                        @if($filter_packages->count() > 0)
+                            @foreach($filter_packages as $filter_package)
+                                @php $packages = DB::table('packages')->where('id', $filter_package->package_id )->where('status', 1)->first() @endphp
+                                @if($packages)
+                                    <li class="menu-header">{{$packages->package_name}}</li>
+
+                                    @if($packages->seflink == 'human')
+                                        <!-- Human Resource start -->
+                                        <li class="dropdown {{ Request::is('portal/human-resource') ? 'active' : '' }}">
+                                            <a href="{{route('portal.human.resource.index')}}" class="nav-link"><i data-feather="users"></i><span class="text-capitalize">Ümumi Məlumat</span></a>
+                                        </li>
+                                        <li class="dropdown {{ Request::is('portal/human-resource') ? 'active' : '' }}">
+                                            <a href="#" class="menu-toggle nav-link has-dropdown text-capitalize"><i
+                                                data-feather="users"></i><span>İnsan Resursları</span></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="{{ Request::is('portal/human-resource') ? 'active' : '' }}">
+                                                    <a class="nav-link {{ Request::is('portal/human-resource') ? 'toggled' : '' }}" href="{{route('portal.human.resource.index')}}">Ümumi Məlumat</a>
+                                                </li>
+                                                <li class="#">
+                                                    <a class="nav-link text-capitalize" href="#">İstifadəçi yarat</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <!-- Human Resource end -->
+                                    @endif
+                                @endif
+                            @endforeach
+                        @endif
+
                     @endif
 
                 @endif

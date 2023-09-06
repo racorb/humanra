@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('iban')->nullable();
             $table->string('account')->nullable();
             $table->string('swift')->nullable();
-            $table->integer('status')->default(1); // 0 => Active; 1 => Passive
+            $table->integer('status')->default(1)->comment('0 => Active; 1 => Passive');
             $table->timestamps();
         });
     }

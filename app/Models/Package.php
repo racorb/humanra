@@ -12,5 +12,6 @@ class Package extends Model
     protected $fillable = [
         'package_name',
         'status',
+        'seflink',
     ];    
 }

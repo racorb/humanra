@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('package_name');
-            $table->integer('status')->default(0); // 0 => disable; 1 => enable
+            $table->string('seflink')->nullable();
+            $table->integer('status')->default(0)->comment("0 => disable; 1 => enable");
             $table->timestamps();
         });
     }

@@ -22,6 +22,13 @@
                         <p class="text-danger">{{ $errors->first('package_name') }}</p>
                     @endif
                 </div>
+                <div class="mb-3">
+                    <label class="form-label" for="package_seflink">Seflink of Package</label>
+                    <input type="text" class="form-control" id="package_seflink" name="package_seflink" value="{{ old('package_seflink') }}">
+                    @if ($errors->has('package_seflink'))
+                        <p class="text-danger">{{ $errors->first('package_seflink') }}</p>
+                    @endif
+                </div>
                 <button type="submit" class="btn btn-primary">Create Package</button>
             </form>
         </div>

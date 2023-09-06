@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('business_id');
             $table->integer('package_id');
-            $table->integer('status')->default(0); // 1 => disable; 0 => active
+            $table->integer('status')->default(1)->comment('1 => disable; 0 => active');
             $table->timestamps();
         });
     }

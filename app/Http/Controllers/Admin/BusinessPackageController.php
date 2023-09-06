@@ -68,7 +68,26 @@ class BusinessPackageController extends Controller
             if($business_package->status == 0){
                 $business_package->status=1;
             } else {
-                $business_package->status=0;
+                $query_business=BusinessArea::where('id', $business_package->business_id)->where('status', 1)->get();
+                $query_package=Package::where('id', $business_package->package_id)->where('status', 1)->get();
+
+                if($query_business->count() > 0){
+                    if($query_package->count() > 0){
+                        $business_package->status=0;
+                    }  else {
+                        $business_package->status=1;
+                        toastr()->error('This data cannot be activated. Because, business area or package is deactive.', 'Ooops!'); 
+                    }                  
+                } else {                    
+                    if($query_package->count() > 0){
+                        $business_package->status=1;
+                        toastr()->error('This data cannot be activated. Because, business area or package is deactive.', 'Ooops!');
+                    } else {
+                        $business_package->status=1;
+                        toastr()->error('This data cannot be activated. Because, business area or package is deactive.', 'Ooops!'); 
+                    }
+                                   
+                }
             }
         }
 

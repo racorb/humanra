@@ -14,6 +14,7 @@
                 <thead>
                 <tr>
                     <th>Name of package</th>
+                    <th>Seflink</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
@@ -22,6 +23,7 @@
                         @foreach($packages as $package)
                         <tr>
                             <td><strong>{{$package->package_name}}</strong></td>
+                            <td><strong>{{$package->seflink}}</strong></td>
                             <td>
                                 <a href="{{route('admin.package.status', $package->id)}}" class="btn btn-{{$package->status == 1 ? 'success' : 'secondary'}}">{{$package->status == 1 ? 'Activate' : 'Disable'}}</a>                    
                             </td>

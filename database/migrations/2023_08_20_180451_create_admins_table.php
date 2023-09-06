@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('company_id')->nullabel();
             $table->string('username')->unique();
             $table->string('password');
-            $table->integer('status')->default(0); // 0-offline, 1-online            
+            $table->integer('status')->default(0)->comment('0-offline, 1-online');           
             $table->rememberToken();
             $table->timestamps();
         });

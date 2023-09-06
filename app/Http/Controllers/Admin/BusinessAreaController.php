@@ -43,12 +43,6 @@ class BusinessAreaController extends Controller
         if($business){
             $query=BusinessPackage::where('business_id', $id)->get();
             if($business->status == 0){
-                if($query->count() > 0){
-                    for($i=0; $i < $query->count(); $i++){
-                        $query[$i]->status=0;
-                        $query[$i]->save();
-                    }
-                }
                 $business->status=1;
             } else {
                 for($i=0; $i < $query->count(); $i++){

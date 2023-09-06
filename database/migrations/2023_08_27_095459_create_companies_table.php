@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('location');
             $table->string('agent');
             $table->text('detail');
-            $table->string('type')->default(0); // 0 => company; 1 => admin
-            $table->integer('status')->default(0); // 0 => disable; 1 => enable
+            $table->string('type')->default(0)->comment('0 => company; 1 => admin');
+            $table->integer('status')->default(0)->comment('0 => disable; 1 => enable');
             $table->timestamps();
         });
     }
