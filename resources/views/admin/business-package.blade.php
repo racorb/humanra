@@ -34,7 +34,8 @@
         </div>
     </div>
 </div>
-<div class="col-12 col-lg-7">
+<div class="col-12">
+    @if($business_area_lists->count() > 0)
     <div class="card">
         <h5 class="card-header">Business Package of List</h5>
         <div class="table-responsive text-nowrap">
@@ -47,7 +48,7 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody class="table-border-bottom-0">
+                <tbody class="table-border-bottom-0">                    
                     @foreach($business_area_lists as $business_area_list)
                     <tr>
                         <td>{{$business_area_list->getBusinessArea->business_name}}</td>
@@ -59,11 +60,14 @@
                             <a href="{{route('admin.business.package.delete', $business_area_list->id)}}" class="btn btn-danger"><i class='bx bxs-trash'></i></a>
                         </td>
                     </tr>
-                    @endforeach
+                    @endforeach                    
                 </tbody>
             </table>
         </div>
     </div>
+    @else 
+        <div class="alert alert-info" role="alert">There is no active business package</div>
+    @endif
 </div>
 @endsection
 

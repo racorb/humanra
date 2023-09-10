@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('deadline_companies', function (Blueprint $table) {
             $table->id();
-            $table->integer('company_id')->nullable();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->integer('status')->default(0)->comment('0-offline, 1-online');           
-            $table->rememberToken();
+            $table->integer('company_id');
+            $table->string('start_date');
+            $table->string('finish_date');
+            $table->integer('status')->default(1)->comment('0 => disable; 1 => enable');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('deadline_companies');
     }
 };

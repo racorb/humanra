@@ -45,6 +45,10 @@
                                 </nav>
                             </div>                           
                         </div>
+                        @if(Auth::guard('web')->user()->company_id == null)
+                            <div class="alert alert-info">Humanranın özəlliklərindən istifadə edə bilmək üçün <a href="{{route('portal.profile.index')}}" class="text-white">Şirkət Məlumatları</a> bölməsindən şirkətinizi yaradın zəhmət olmasa.</div>
+                        @endif
+
                         @yield('content')
                     </section>
                 </div>        
@@ -99,7 +103,7 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- General JS Scripts -->
         <script src="{{asset('/')}}portal-html/assets/js/app.min.js"></script>
         @yield('js')  

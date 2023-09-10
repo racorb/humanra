@@ -40,6 +40,13 @@ class AuthController extends Controller
         return view('portal.register');
     }
     public function postRegister(AuthRegisterRequest $request) {
+        $user=User::where('username', $request->username)->first();
+
+        if($user){
+            toastr()->error('Bu adda istifadəçi artıq qeydiyyatdan keçmişdir', 'Ooops!');
+            return redirect()->back();
+        }
+
         // register code
         $user=new User();
         $user->username=$request->username;
@@ -54,6 +61,18 @@ class AuthController extends Controller
             return redirect()->back();
         }
 
+    }
+
+    public function check(Request $request){
+        if($request->post('username')){
+            $username = $request->get('username');
+            $check_data = User::where('username', $username)->first();
+            if($check_data){
+                echo 'not_unique';
+            } else {
+                echo 'unique';
+            }
+        }
     }
 
     // logout section

@@ -5,20 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class DeadlineCompany extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'company_name',
-        'seflink',
-        'area',
-        'email',
-        'phone',
-        'location',
-        'agent',
-        'detail',
-        'type',
+        'company_id',
+        'start_date',
+        'finish_date',
         'status',
     ];
 }

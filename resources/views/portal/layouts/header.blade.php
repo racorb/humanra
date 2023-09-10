@@ -131,9 +131,9 @@
             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{asset('/')}}portal-html/assets/img/user.png" class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
                 <div class="dropdown-title text-center">{{Auth::guard('web')->user()->username}}</div>
-                <a href="{{route('portal.profile')}}" class="dropdown-item has-icon"> <i class="far fa-user"></i> Profile </a> 
-                <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i> Tənzimləmələr</a>
-                <a href="{{route('portal.logout')}}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>Çıxış</a>
+                <a href="{{route('portal.profile.index')}}" class="dropdown-item has-icon"> <i style="font-size:17px" class="far fa-building"></i> Şirkət Məlumatları </a> 
+                <a href="#" class="dropdown-item has-icon"> <i style="font-size:17px" class="fas fa-cog"></i> Tənzimləmələr</a>
+                <a href="{{route('portal.logout')}}" class="dropdown-item has-icon text-danger"> <i style="font-size:17px" class="fas fa-sign-out-alt"></i>Çıxış</a>
             </div>
         </li>
         <li>

@@ -16,6 +16,7 @@ class CompanySeeder extends Seeder
     {
         DB::table('companies')->insert([
             'company_name' => 'Humanra',
+            'seflink' => 'humanra',
             'email' => 'admin@company.com',
             'phone' => '+99455 821-56-73',
             'location' => 'Azerbaycan, Bakı',
@@ -26,6 +27,7 @@ class CompanySeeder extends Seeder
 
         DB::table('companies')->insert([
             'company_name' => 'Company Name',
+            'seflink' => 'company_name',
             'area' => 1,
             'email' => 'test@company.com',
             'phone' => '+99455 555-55-55',

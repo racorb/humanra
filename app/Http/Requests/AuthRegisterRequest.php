@@ -22,7 +22,7 @@ class AuthRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required|min:2',
+            'username' => 'required|min:4',
             'password' => 'required|min:6|max:15',
         ];
     }
@@ -37,7 +37,7 @@ class AuthRegisterRequest extends FormRequest
         return [
             // name
             'username.required' => 'İstifadəçi adınızı daxil edin',
-            'username.min' => 'İstifadəçi adınız minimum 2 karakter olmalıdır',
+            'username.min' => 'İstifadəçi adınız minimum 4 karakter olmalıdır',
 
             // password
             'password.required' => 'Şifrənizi daxil edin',

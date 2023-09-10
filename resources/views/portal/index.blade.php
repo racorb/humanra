@@ -46,7 +46,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="username">İstifadəçi adı <span class="text-danger">*</span> </label>
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="İstifadəçi adınızı daxil edin" >
+                                <input id="username" type="text" style="text-transform:lowercase" class="form-control" name="username" value="{{ old('username') }}" placeholder="İstifadəçi adınızı daxil edin" >
                                 @if ($errors->has('username'))
                                     <p class="text-danger">{{ $errors->first('username') }}</p>
                                 @endif
@@ -80,6 +80,12 @@
 
 @section("js")
 <script>
+    $("#username").keyup(function () {
+        // underscores automatically
+        this.value = this.value.replace(/ /g, "_");
+    });
+
+    // show & hide password
     let eyeicon=document.getElementById("eye-icon");
     let password=document.getElementById("password");
 

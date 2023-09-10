@@ -14,15 +14,16 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('company_name');
+            $table->string('seflink');
             $table->integer('area')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone');
             $table->string('location');
             $table->string('agent');
-            $table->text('detail');
+            $table->text('detail')->nullable();
             $table->string('type')->default(0)->comment('0 => company; 1 => admin');
-            $table->integer('status')->default(0)->comment('0 => disable; 1 => enable');
+            $table->integer('status')->default(1)->comment('0 => disable; 1 => enable');
             $table->timestamps();
         });
     }

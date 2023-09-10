@@ -37,16 +37,22 @@ Route::prefix('portal')->name('portal.')->group(function(){
         // register
         Route::get('/register', [AuthController::class, 'register'])->name('register');
         Route::post('/register', [AuthController::class, 'postRegister'])->name('register.post');
+        Route::post('/check', [AuthController::class, 'check'])->name('check');
     });    
 
     Route::middleware(['auth:web'])->group(function () {
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/company', [CompanyController::class, 'index'])->name('profile');
         
         // human resource
         Route::prefix('/human-resource')->name('human.resource.')->group(function(){
             Route::get('/', [HumanResourceController::class, 'index'])->name('index');
+        });
+
+        // human resource
+        Route::prefix('/company')->controller(CompanyController::class)->name('profile.')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'create')->name('create');
         });
     });
 });
@@ -72,25 +78,25 @@ Route::prefix('admin')->name('admin.')->group(function(){
         });
 
         // business area
-        Route::prefix('/business-area')->name('business.area.')->group(function(){
-            Route::get('/', [BusinessAreaController::class, 'index'])->name('index');
-            Route::get('/create', [BusinessAreaController::class, 'create'])->name('create');
-            Route::post('/store', [BusinessAreaController::class, 'store'])->name('store');
-            Route::get('/status/{id}', [BusinessAreaController::class, 'status'])->name('status');
-            Route::get('/edit/{id}', [BusinessAreaController::class, 'edit'])->name('edit');
-            Route::put('/update/{id}', [BusinessAreaController::class, 'update'])->name('update');
-            Route::get('/delete/{id}', [BusinessAreaController::class, 'delete'])->name('delete');
+        Route::prefix('/business-area')->controller(BusinessAreaController::class)->name('business.area.')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/status/{id}', 'status')->name('status');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::get('/delete/{id}', 'delete')->name('delete');
         });
 
         // packages
-        Route::prefix('/packages')->name('package.')->group(function(){
-            Route::get('/', [PackageController::class, 'index'])->name('index');
-            Route::get('/create', [PackageController::class, 'create'])->name('create');
-            Route::post('/store', [PackageController::class, 'store'])->name('store');
-            Route::get('/status/{id}', [PackageController::class, 'status'])->name('status');
-            Route::get('/edit/{id}', [PackageController::class, 'edit'])->name('edit');
-            Route::put('/update/{id}', [PackageController::class, 'update'])->name('update');
-            Route::get('/delete/{id}', [PackageController::class, 'delete'])->name('delete');
+        Route::prefix('/packages')->controller(PackageController::class)->name('package.')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/status/{id}', 'status')->name('status');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::get('/delete/{id}', 'delete')->name('delete');
         });
 
         // business package

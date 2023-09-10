@@ -45,8 +45,9 @@
                         <form method="POST" action="{{route('portal.register.post')}}" autocomplete="off">
                             @csrf
                             <div class="form-group">
-                                <label for="username">İstifadəçi adınız <span class="text-danger">*</span> </label>
-                                <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="İstifadəçi adınızı daxil edin" >
+                                <label for="username">İstifadəçi adı <span class="text-danger">*</span> </label>
+                                <input id="username" type="text" class="form-control" style="text-transform:lowercase" name="username" value="{{ old('username') }}" placeholder="İstifadəçi adınızı daxil edin" >
+                                <div id="check_username"></div>
                                 @if ($errors->has('username'))
                                     <p class="text-danger">{{ $errors->first('username') }}</p>
                                 @endif
@@ -62,8 +63,8 @@
                                 @endif                               
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                    Təsdiq et
+                                <button id="submit" type="submit" class="btn btn-success btn-lg btn-block text-capitalize">
+                                    Hesab yarat
                                 </button>
                             </div>
                         </form>
@@ -80,6 +81,30 @@
 
 @section("js")
 <script>
+    $("#username").keyup(function () {
+        // underscores automatically
+        this.value = this.value.replace(/ /g, "_");
+
+        // check username
+        var check_username = '';
+        var username = $('#username').val();
+        var _token = $('input[name="_token"]').val();
+
+        $.ajax({
+            url:"{{ route('portal.check') }}",
+            method:"POST",
+            data:{username:username, _token:_token},
+            success:function(result){
+                if(result == 'unique'){
+                    $('#check_username').html('<span class="text-success">İstifadəçi adı boşdur</span>');
+                } else {
+                    $('#check_username').html('<span class="text-danger">İstifadəçi adı mövcuddur</span>');
+                }
+            }
+        })
+    });
+
+    // show password & hide
     let eyeicon=document.getElementById("eye-icon");
     let password=document.getElementById("password");
 
